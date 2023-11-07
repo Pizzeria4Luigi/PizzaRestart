@@ -82,12 +82,12 @@
         {% endif %}
     </header>
     <div class="cart-icon">
-        <a href="/orders"><img class="cart-icon-img" src="pictures/shopping-cart-icon-removebg-preview.png"></a>
+        <a href="Orders.html"><img class="cart-icon-img" src="static/shopping-cart-icon-removebg-preview.png"></a>
     </div>
 
     <div class="menu-item">
         <h2>Margherita</h2>
-        <img id="img1" class="image" src="static\pictures\PizzaMargherita.webp">
+        <img id="img1" class="image" src="static/PizzaMargherita.webp">
         <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -106,7 +106,7 @@
 
 <div class="menu-item">
     <h2>Pepperoni</h2>
-    <img class="image" src="static/pictures/pepperoni-pizza.png">
+    <img class="image" src="static/pepperoni-pizza.png">
     <button onclick="orderPizza('Pepperoni')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -125,7 +125,7 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Quattro Formaggi</h2>
-    <img class="image" src="static/pictures/Quattro-formaggi-pizza-square.jpg">
+    <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
     <button onclick="orderPizza('Formaggi')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -144,7 +144,7 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Mario's Madness</h2>
-    <img class="image" src="pictures/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
     <button onclick="orderPizza('Madness')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -176,7 +176,9 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Luigi's Baloney</h2>
-    <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    <div>
+        <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    </div>  
     <button onclick="orderPizza('Baloney')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -194,7 +196,7 @@ function orderPizza(pizzaName) {
 </script>
 <div class="menu-item">
     <h2>Bowser Buns</h2>
-    <img class="image" src="pictures/garlic-bread-recipe-snippet.jpg">
+    <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
     <button onclick="orderPizza('Buns')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
