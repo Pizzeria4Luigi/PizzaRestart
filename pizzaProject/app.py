@@ -40,8 +40,9 @@ def confirm_token(token, expiration=3600):  # Token expiration time set to 1 hou
 
 @app.route('/',methods=['GET', 'POST'])
 def Main():
-    ref_value = request.args.get('ref')
-    session["Table"] = ref_value
+    if request.args.get('ref') is not None:
+        ref_value = request.args.get('ref')
+        session["Table"] = ref_value
     print(session["Table"])
     if 'username' in session:
         return render_template('PizzaMenu.html', username=session['username'])
