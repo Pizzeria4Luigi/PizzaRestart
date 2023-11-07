@@ -17,7 +17,6 @@
             position: fixed;
             width: 100%;
             z-index: 1;
-            top: 0px;
         }
         h1 {
             margin: 0;
@@ -29,38 +28,24 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
+            display: inline-block;
             width: 80%;
         }
         .image {
             height: 200px;
             width: 200px;
             border-radius: 10%;
-            margin-right: 20px;
-        }
-        .content {
-            flex: 1;
-        }
-        .quantity {
-            flex: 0.5;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
         }
         @media (max-width: 768px) {
         }
         .button-container {
-            position: fixed;
+            position: absolute;
+            bottom: 10px;
             width: 100%;
-            top: 70px;
-            left: 650px;
         }
         .buttonOrderNow {
             height: 50px;
             width: 200px;
-            top: 10px;
-            right: 10px;
             background-color: red;
             border-radius: 0%;
             color: #fff;
@@ -74,75 +59,45 @@
     </header>
     {% if data["Margherita"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/PizzaMargherita.webp">
-        <div class="content">
-            <h2>Margherita</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Margherita"] }} ordered
-        </div>
+        <h2>Margherita</h2>
+        <img class="image" src="PizzaMargherita.webp">
     </div>
     {% endif %}
     {% if data["Pepperoni"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/pepperoni-pizza.png">
-        <div class="content">
-            <h2>Pepperoni</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Pepperoni"] }} ordered
-        </div>
+        <h2>Quattro Formaggi</h2>
+        <img class="image" src="Quattro-formaggi-pizza-square.jpg">
     </div>
     {% endif %}
     {% if data["Formaggi"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
-        <div class="content">
-            <h2>Quattro Formaggi</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Formaggi"] }} ordered
-        </div>
+        <h2>Pepperoni</h2>
+        <img class="image" src="pepperoni-pizza.png">
     </div>
     {% endif %}
     {% if data["Madness"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
-        <div class="content">
-            <h2>Mario's Madness</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Madness"] }} ordered
-        </div>
+        <h2>Mario's Madness</h2>
+        <img class="image" src="pizza-mushrooms-salami-pepperoni-ham.jpg">
     </div>
     {% endif %}
     {% if data["Baloney"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/Luigi's pizza.jpg">
-        <div class="content">
-            <h2>Luigi's Baloney</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Baloney"] }} ordered
-        </div>
+        <h2>Luigi's Baloney</h2>
+        <img class="image" src="Luigi's pizza.jpg">
     </div>
     {% endif %}
     {% if data["Buns"] > 0 %}
     <div class="menu-item">
-        <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
-        <div class="content">
-            <h2>Bowser Buns</h2>
-        </div>
-        <div class="quantity">
-            {{ data["Buns"] }} ordered
-        </div>
+        <h2>Bowser Buns</h2>
+        <img class="image" src="garlic-bread-recipe-snippet.jpg">
     </div>
     {% endif %}
     <div class="button-container">
         <button id="redirectButton" class="buttonOrderNow"><h3>Order Now</h3></button>
         <script>
             document.getElementById("redirectButton").addEventListener("click", function() {
-                window.location.href = "/discount";
+                window.location.href = "Discount.html";
             });
         </script>
     </div>
