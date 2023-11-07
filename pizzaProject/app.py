@@ -216,9 +216,14 @@ def logout():
 
 @app.route('/orders', methods=['GET', 'POST'])
 def orders():
-    with open('data.json', 'r') as f:
+    with open('currentOrder.json', 'r') as f:
+        orders_dict = {}
         data = json.load(f)
-    return render_template('Orders.html', data=data)
+        _dict = data[int(session["Table"])-1]
+        for pizza in data[int(session["Table"])-1]:
+            orders_dict[pizza] = {_dict[pizza]}
+    print(orders_dict)
+    return render_template('Orders.html', data=orders_dict, table = session["Table"])
 
 @app.route('/forgotten_password', methods=['GET', 'POST'])
 def forgotten_password():
