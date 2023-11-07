@@ -86,7 +86,7 @@ def order_pizza():
     print(pizza_name)
     with open('currentOrder.json', 'r') as f:
         data = json.load(f)
-        table = data[int(session["Table"])]
+        table = data[int(session["Table"]) - 1]
         amount = table[pizza_name]
         amount = amount + 1
         table[pizza_name] = amount
@@ -215,7 +215,9 @@ def logout():
 
 @app.route('/orders', methods=['GET', 'POST'])
 def orders():
-    return render_template('Orders.html')
+    with open('data.json', 'r') as f:
+        data = json.load(f)
+    return render_template('Orders.html', data=data)
 
 @app.route('/forgotten_password', methods=['GET', 'POST'])
 def forgotten_password():
