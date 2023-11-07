@@ -274,6 +274,13 @@ def discount():
         return render_template('PizzaMenu.html')
     else:
         return render_template('Discount.html')
+    
+@app.route('/smartOven', methods=['POST'])
+def read_info():
+    remove_order = request.get_json()
+    if remove_order.get('status') == True:
+        print("WORKS")
+    return "OK"
 
 if __name__ == "__main__":
     app.run(debug=True)
