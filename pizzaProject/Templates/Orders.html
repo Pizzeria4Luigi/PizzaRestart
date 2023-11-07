@@ -15,7 +15,7 @@
             padding: 12px 0;
             text-align: center;
             position: fixed;
-            width: 97.7%;
+            width: 100%;
             z-index: 1;
         }
         h1 {
@@ -29,7 +29,7 @@
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            width: 250px;
+            width: 80%;
         }
         .image {
             height: 200px;
@@ -51,27 +51,53 @@
             color: #fff;
             margin: 0 auto;
         }
-
     </style>
 </head>
-
-
-
-
-
-
-
-
-
 <body>
     <header>
         <h1>Orders</h1>
     </header>
+    {% if Margherita > 0 %}
+    <div class="menu-item">
+        <h2>Margherita</h2>
+        <img class="image" src="PizzaMargherita.webp">
+    </div>
+    {% endif %}
+    {% if QuattroFormaggi > 0 %}
+    <div class="menu-item">
+        <h2>Quattro Formaggi</h2>
+        <img class="image" src="Quattro-formaggi-pizza-square.jpg">
+    </div>
+    {% endif %}
+    {% if Pepperoni > 0 %}
+    <div class="menu-item">
+        <h2>Pepperoni</h2>
+        <img class="image" src="pepperoni-pizza.png">
+    </div>
+    {% endif %}
+    {% if MariosMadness > 0 %}
+    <div class="menu-item">
+        <h2>Mario's Madness</h2>
+        <img class="image" src="pizza-mushrooms-salami-pepperoni-ham.jpg">
+    </div>
+    {% endif %}
+    {% if LuigisBaloney > 0 %}
+    <div class="menu-item">
+        <h2>Luigi's Baloney</h2>
+        <img class="image" src="Luigi's pizza.jpg">
+    </div>
+    {% endif %}
+    {% if BowserBuns > 0 %}
+    <div class="menu-item">
+        <h2>Bowser Buns</h2>
+        <img class="image" src="garlic-bread-recipe-snippet.jpg">
+    </div>
+    {% endif %}
     <div class="button-container">
-        <button id="redirectButton" class="buttonViewCart"><h3>Order Now</h3></button>
+        <button id="redirectButton" class="buttonOrderNow"><h3>Order Now</h3></button>
         <script>
             document.getElementById("redirectButton").addEventListener("click", function() {
-            window.location.href="DoYouWantToRegisterPage.html";
+                window.location.href = "Discount.html";
             });
         </script>
     </div>

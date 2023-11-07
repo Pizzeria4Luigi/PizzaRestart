@@ -24,9 +24,13 @@
         }
         .cart-icon {
             position: fixed;
-            top: 70px; /* Adjust the vertical position as needed */
-            right: 20px; /* Adjust the horizontal position as needed */
-            z-index: 1; /* Ensure it's above other content */
+            top: 70px;
+            right: 20px;
+            z-index: 1;
+        }
+        .cart-icon-img {
+            height: 40px;
+            width: 40px;
         }
         .login-button {
             border: 1px solid #ccc;
@@ -78,15 +82,14 @@
         {% endif %}
     </header>
     <div class="cart-icon">
-        <a href="Orders.html"><img class="imageViewCart" src="shopping-cart-icon-removebg-preview.png"></a>
+        <a href="/orders"><img class="cart-icon-img" src="pictures/shopping-cart-icon-removebg-preview.png"></a>
     </div>
 
     <div class="menu-item">
         <h2>Margherita</h2>
-        <img class="image" src="PizzaMargherita.webp">
+        <img id="img1" class="image" src="static\pictures\PizzaMargherita.webp">
         <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
     </div>
-    <!-- Repeat for other pizzas -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     function orderPizza(pizzaName) {
@@ -95,7 +98,6 @@
             url: "/order",
             data: {pizza_name: pizzaName},
             success: function(response) {
-                // Handle the response here, maybe update the UI to show the added pizza
                 console.log(response);
             }
         });
@@ -103,32 +105,10 @@
     </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Pepperoni</h2>
+    <img class="image" src="static/pictures/pepperoni-pizza.png">
+    <button onclick="orderPizza('Pepperoni')" class="buttonOrderNow">Order Now</button>
 </div>
-<!-- Repeat for other pizzas -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function orderPizza(pizzaName) {
-    $.ajax({
-        type: "POST",
-        url: "/order",
-        data: {pizza_name: pizzaName},
-        success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
-            console.log(response);
-        }
-    });
-}
-</script>
-
-<div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
-</div>
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -144,24 +124,10 @@ function orderPizza(pizzaName) {
 </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Quattro Formaggi</h2>
+    <img class="image" src="static/pictures/Quattro-formaggi-pizza-square.jpg">
+    <button onclick="orderPizza('Formaggi')" class="buttonOrderNow">Order Now</button>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function orderPizza(pizzaName) {
-    $.ajax({
-        type: "POST",
-        url: "/order",
-        data: {pizza_name: pizzaName},
-        success: function(response) {
-            console.log(response);
-        }
-    });
-}
-</script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -177,11 +143,60 @@ function orderPizza(pizzaName) {
 </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Mario's Madness</h2>
+    <img class="image" src="pictures/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    <button onclick="orderPizza('Madness')" class="buttonOrderNow">Order Now</button>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function orderPizza(pizzaName) {
+    $.ajax({
+        type: "POST",
+        url: "/order",
+        data: {pizza_name: pizzaName},
+        success: function(response) {
+            console.log(response);
+        }
+    });
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function orderPizza(pizzaName) {
+    $.ajax({
+        type: "POST",
+        url: "/order",
+        data: {pizza_name: pizzaName},
+        success: function(response) {
+            console.log(response);
+        }
+    });
+}
+</script>
 
+<div class="menu-item">
+    <h2>Luigi's Baloney</h2>
+    <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    <button onclick="orderPizza('Baloney')" class="buttonOrderNow">Order Now</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function orderPizza(pizzaName) {
+    $.ajax({
+        type: "POST",
+        url: "/order",
+        data: {pizza_name: pizzaName},
+        success: function(response) {
+            console.log(response);
+        }
+    });
+}
+</script>
+<div class="menu-item">
+    <h2>Bowser Buns</h2>
+    <img class="image" src="pictures/garlic-bread-recipe-snippet.jpg">
+    <button onclick="orderPizza('Buns')" class="buttonOrderNow">Order Now</button>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
