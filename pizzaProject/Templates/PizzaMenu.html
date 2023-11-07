@@ -82,15 +82,14 @@
         {% endif %}
     </header>
     <div class="cart-icon">
-        <a href="Orders.html"><img class="imageViewCart" src="shopping-cart-icon-removebg-preview.png"></a>
+        <a href="Orders.html"><img class="cart-icon-img" src="static/shopping-cart-icon-removebg-preview.png"></a>
     </div>
 
     <div class="menu-item">
         <h2>Margherita</h2>
-        <img class="image" src="PizzaMargherita.webp">
+        <img id="img1" class="image" src="static/PizzaMargherita.webp">
         <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
     </div>
-    <!-- Repeat for other pizzas -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     function orderPizza(pizzaName) {
@@ -99,7 +98,6 @@
             url: "/order",
             data: {pizza_name: pizzaName},
             success: function(response) {
-                // Handle the response here, maybe update the UI to show the added pizza
                 console.log(response);
             }
         });
@@ -107,11 +105,10 @@
     </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Pepperoni</h2>
+    <img class="image" src="static/pepperoni-pizza.png">
+    <button onclick="orderPizza('Pepperoni')" class="buttonOrderNow">Order Now</button>
 </div>
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -120,7 +117,6 @@ function orderPizza(pizzaName) {
         url: "/order",
         data: {pizza_name: pizzaName},
         success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
             console.log(response);
         }
     });
@@ -128,11 +124,10 @@ function orderPizza(pizzaName) {
 </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Quattro Formaggi</h2>
+    <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
+    <button onclick="orderPizza('Formaggi')" class="buttonOrderNow">Order Now</button>
 </div>
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -141,7 +136,6 @@ function orderPizza(pizzaName) {
         url: "/order",
         data: {pizza_name: pizzaName},
         success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
             console.log(response);
         }
     });
@@ -149,11 +143,10 @@ function orderPizza(pizzaName) {
 </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Mario's Madness</h2>
+    <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    <button onclick="orderPizza('Madness')" class="buttonOrderNow">Order Now</button>
 </div>
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -162,14 +155,11 @@ function orderPizza(pizzaName) {
         url: "/order",
         data: {pizza_name: pizzaName},
         success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
             console.log(response);
         }
     });
 }
 </script>
-
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -178,7 +168,6 @@ function orderPizza(pizzaName) {
         url: "/order",
         data: {pizza_name: pizzaName},
         success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
             console.log(response);
         }
     });
@@ -186,11 +175,12 @@ function orderPizza(pizzaName) {
 </script>
 
 <div class="menu-item">
-    <h2>Margherita</h2>
-    <img class="image" src="PizzaMargherita.webp">
-    <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+    <h2>Luigi's Baloney</h2>
+    <div>
+        <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    </div>  
+    <button onclick="orderPizza('Baloney')" class="buttonOrderNow">Order Now</button>
 </div>
-<!-- Repeat for other pizzas -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function orderPizza(pizzaName) {
@@ -199,7 +189,24 @@ function orderPizza(pizzaName) {
         url: "/order",
         data: {pizza_name: pizzaName},
         success: function(response) {
-            // Handle the response here, maybe update the UI to show the added pizza
+            console.log(response);
+        }
+    });
+}
+</script>
+<div class="menu-item">
+    <h2>Bowser Buns</h2>
+    <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
+    <button onclick="orderPizza('Buns')" class="buttonOrderNow">Order Now</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function orderPizza(pizzaName) {
+    $.ajax({
+        type: "POST",
+        url: "/order",
+        data: {pizza_name: pizzaName},
+        success: function(response) {
             console.log(response);
         }
     });

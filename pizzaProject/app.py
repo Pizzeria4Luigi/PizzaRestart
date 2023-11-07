@@ -9,6 +9,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 file_path = os.path.join(os.path.dirname(__file__), "currentOrder.txt")
 app.secret_key = "super secret key"
+app.static_folder = 'static'
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465  # or the appropriate port
