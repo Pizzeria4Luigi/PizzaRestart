@@ -221,7 +221,7 @@ def orders():
         data = json.load(f)
         _dict = data[int(session["Table"])-1]
         for pizza in data[int(session["Table"])-1]:
-            orders_dict[pizza] = {_dict[pizza]}
+            orders_dict[pizza] = _dict[pizza]
     print(orders_dict)
     return render_template('Orders.html', data=orders_dict, table = session["Table"])
 
