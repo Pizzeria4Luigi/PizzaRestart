@@ -103,15 +103,16 @@ def success():
 
 @app.route('/chef')
 def chef():
-    # Read the current order from the file
-    if os.path.exists(file_path):
-        with open(file_path, "r") as file:
-            current_order = file.read()
-        if current_order:
-            return f"The chef needs to prepare: {current_order}"
-        else:
-            return "No current orders."
-    return "Order file not found."
+    with open('currentOrder.json', 'r') as f:
+        orders_dict = []
+        data = json.load(f)
+        _dict = data[int(session["Table"])-1]
+        for table in range(len(data)):
+            for pizza in data[int(session["Table"])-1]:
+                while _dict[pizza] != 0:
+                    orders_dict.append([pizza, _dict[pizza]])
+                    _dict[pizza] = _dict[pizza] - 1
+    return render_template('Chef.html', data=orders_dict, table = session["Table"])
 
 @app.route('/registration', methods=['GET', 'POST'])
 def Register_page1():
