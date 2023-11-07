@@ -57,37 +57,37 @@
     <header>
         <h1>Orders</h1>
     </header>
-    {% if {{data}}[Margherita] > 0 %}
+    {% if data["Margherita"] > 0 %}
     <div class="menu-item">
         <h2>Margherita</h2>
         <img class="image" src="PizzaMargherita.webp">
     </div>
     {% endif %}
-    {% if {{data}}[QuattroFormaggi] > 0 %}
+    {% if data["Pepperoni"] > 0 %}
     <div class="menu-item">
         <h2>Quattro Formaggi</h2>
         <img class="image" src="Quattro-formaggi-pizza-square.jpg">
     </div>
     {% endif %}
-    {% if {{data}}[Pepperoni] > 0 %}
+    {% if data["Formaggi"] > 0 %}
     <div class="menu-item">
         <h2>Pepperoni</h2>
         <img class="image" src="pepperoni-pizza.png">
     </div>
     {% endif %}
-    {% if {{data}}[MariosMadness] > 0 %}
+    {% if data["Madness"] > 0 %}
     <div class="menu-item">
         <h2>Mario's Madness</h2>
         <img class="image" src="pizza-mushrooms-salami-pepperoni-ham.jpg">
     </div>
     {% endif %}
-    {% if {{data}}[LuigisBaloney] > 0 %}
+    {% if data["Baloney"] > 0 %}
     <div class="menu-item">
         <h2>Luigi's Baloney</h2>
         <img class="image" src="Luigi's pizza.jpg">
     </div>
     {% endif %}
-    {% if {{data}}[BowserBuns] > 0 %}
+    {% if data["Buns"] > 0 %}
     <div class="menu-item">
         <h2>Bowser Buns</h2>
         <img class="image" src="garlic-bread-recipe-snippet.jpg">
