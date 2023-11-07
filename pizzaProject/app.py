@@ -6,6 +6,8 @@ import time
 import json
 from flask import Flask, request, jsonify
 
+chef_orders_dict = None
+
 app = Flask(__name__)
 file_path = os.path.join(os.path.dirname(__file__), "currentOrder.txt")
 app.secret_key = "super secret key"
@@ -104,15 +106,16 @@ def success():
 @app.route('/chef')
 def chef():
     with open('currentOrder.json', 'r') as f:
-        orders_dict = []
+        global chef_orders_dict
+        chef_orders_dict = []
         data = json.load(f)
         _dict = data[int(session["Table"])-1]
         for table in range(len(data)):
             for pizza in data[int(session["Table"])-1]:
                 while _dict[pizza] != 0:
-                    orders_dict.append([pizza, _dict[pizza]])
+                    chef_orders_dict.append([pizza, _dict[pizza]])
                     _dict[pizza] = _dict[pizza] - 1
-    return render_template('Chef.html', data=orders_dict, table = session["Table"])
+    return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
 
 @app.route('/registration', methods=['GET', 'POST'])
 def Register_page1():
@@ -280,6 +283,9 @@ def read_info():
     remove_order = request.get_json()
     if remove_order.get('status') == True:
         print("WORKS")
+        #chef_orders_dict = chef_orders_dict.pop(0)
+        #print(chef_orders_dict)
+        return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
     return "OK"
 
 if __name__ == "__main__":
