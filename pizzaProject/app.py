@@ -60,7 +60,8 @@ def send_conf_mail():
 @app.route('/order', methods=['POST'])
 def order_pizza():
     # Get the pizza name from the POST request
-    pizza_name = request.form.get('pizza_name')
+    #pizza_name = request.form.get('pizza_name')
+    '''
     with open(file_path, "r+") as file:
         try:
             orders = json.load(file)
@@ -79,21 +80,19 @@ def order_pizza():
 
     # Increment the count for the ordered pizza
     orders[pizza_name] = orders.get(pizza_name, 0) + 1
-    
+    '''
+    pizza_name = request.form.get('pizza_name')
     # Write the updated orders back to the file
-    with open(file_path, "r+") as file:
-        lines = file.readlines()
-        for n in range(len(lines)):
-            #print("something")
-            if n == int(session["Table"]):
-                for pizza_id, count in orders.items():
-                    lines[n] = str(f"{pizza_id}:{count}")
-                    print(lines[n])
-                    #lines[n] = pizza_id}")]
-                    #l = lines[n].split(",")
-
-                    file.writelines(lines)
-
+    print(pizza_name)
+    with open('currentOrder.json', 'r') as f:
+        data = json.load(f)
+        table = data[int(session["Table"])]
+        amount = table[pizza_name]
+        amount = amount + 1
+        table[pizza_name] = amount
+        #data.append()
+    with open('currentOrder.json', 'w') as f:
+        json.dump(data, f, indent=4)
     return redirect(url_for('success'))
 
 @app.route('/success')
