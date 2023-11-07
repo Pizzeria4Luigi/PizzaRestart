@@ -79,7 +79,10 @@
             <h2>Margherita</h2>
         </div>
         <div class="quantity">
-            {{ data["Margherita"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Margherita'] }}" id="MargheritaQuantity" readonly>
+            <button onclick="decrement('MargheritaQuantity')">-</button>
+            <button onclick="increment('MargheritaQuantity')">+</button>
         </div>
     </div>
     {% endif %}
@@ -90,7 +93,10 @@
             <h2>Pepperoni</h2>
         </div>
         <div class="quantity">
-            {{ data["Pepperoni"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Pepperoni'] }}" id="PepperoniQuantity" readonly>
+            <button onclick="decrement('PepperoniQuantity')">-</button>
+            <button onclick="increment('PepperoniQuantity')">+</button>
         </div>
     </div>
     {% endif %}
@@ -101,7 +107,10 @@
             <h2>Quattro Formaggi</h2>
         </div>
         <div class="quantity">
-            {{ data["Formaggi"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Formaggi'] }}" id="FormaggiQuantity" readonly>
+            <button onclick="decrement('FormaggiQuantity')">-</button>
+            <button onclick="increment('FormaggiQuantity')">+</button>
         </div>
     </div>
     {% endif %}
@@ -112,7 +121,10 @@
             <h2>Mario's Madness</h2>
         </div>
         <div class="quantity">
-            {{ data["Madness"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Madness'] }}" id="MadnessQuantity" readonly>
+            <button onclick="decrement('MadnessQuantity')">-</button>
+            <button onclick="increment('MadnessQuantity')">+</button>
         </div>
     </div>
     {% endif %}
@@ -123,7 +135,10 @@
             <h2>Luigi's Baloney</h2>
         </div>
         <div class="quantity">
-            {{ data["Baloney"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Baloney'] }}" id="BaloneyQuantity" readonly>
+            <button onclick="decrement('BaloneyQuantity')">-</button>
+            <button onclick="increment('BaloneyQuantity')">+</button>
         </div>
     </div>
     {% endif %}
@@ -134,7 +149,10 @@
             <h2>Bowser Buns</h2>
         </div>
         <div class="quantity">
-            {{ data["Buns"] }} ordered
+            <span>Quantity:</span>
+            <input type="text" value="{{ data['Buns'] }}" id="BunsQuantity" readonly>
+            <button onclick="decrement('BunsQuantity')">-</button>
+            <button onclick="increment('BunsQuantity')">+</button>
         </div>
     </div>
     {% endif %}
