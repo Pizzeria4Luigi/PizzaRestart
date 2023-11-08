@@ -24,13 +24,15 @@
         }
         .menu-item {
             border: 1px solid #ccc;
-            margin: 20px;
+            margin-top: 70px;
             padding: 10px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
-            width: 80%;
+            width: 70%;
+            margin-left: 10px;
+
         }
         .image {
             height: 200px;
@@ -54,17 +56,27 @@
             position: fixed;
             width: 100%;
             top: 70px;
-            left: 650px;
+            right: 0; 
         }
         .buttonOrderNow {
             height: 50px;
-            width: 200px;
-            top: 10px;
-            right: 10px;
+            width: 150px;
             background-color: red;
             border-radius: 0%;
             color: #fff;
-            margin: 0 auto;
+            float: right;
+            right: 10px;
+        }
+        .total-price {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            margin-left: 10px;
+            bottom: 10;
         }
     </style>
 </head>
@@ -76,11 +88,24 @@
     {% for pizza, quantity in data.items() %}
         {% if quantity > 0 %}
             <div class="menu-item">
-                <!-- Image for pizza; you'll need to set the correct image for each pizza -->
-                <img class="image" src="static/{{ pizza|lower }}.jpg">
-                <div class="content">
-                    <h2>{{ pizza.replace('_', ' ') }}</h2>
-                </div>
+            {% if pizza == "Margherita" %}
+                <img class="image" src="static/PizzaMargherita.webp">
+            {% elif pizza == "Pepperoni" %}
+                <img class="image" src="static/pepperoni-pizza.png">
+            {% elif pizza == "Formaggi" %}
+                <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
+                {% elif pizza == "Madness" %}
+                <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+                {% elif pizza == "Baloney" %}
+                <img class="image" src="static/Luigis pizza.jpg">
+                {% elif pizza == "Buns" %}
+                <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
+            {% else %}
+                <img class="image" src="static/default.jpg">
+            {% endif %}
+            <div class="content">
+                <h2>{{ pizza.replace('_', ' ') }}</h2>
+            </div>
                 <div class="quantity">
                     <form method="post" action="{{ url_for('change_quantity') }}" style="display: inline;">
                         <input type="hidden" name="pizzaType" value="{{ pizza }}">
@@ -88,15 +113,13 @@
                         <button type="submit">-</button>
                     </form>
                     <span> {{ quantity }} </span>
-                    <form method="post" action="{{ url_for('change_quantity') }}" style="display: inline;">
-                        <input type="hidden" name="pizzaType" value="{{ pizza }}">
-                        <input type="hidden" name="action" value="increment">
-                        <button type="submit">+</button>
-                    </form>
                 </div>
             </div>
         {% endif %}
     {% endfor %}
+    <div class="total-price">
+        <h2>Total Price: ${{ total_price }}</h2>
+    </div>
 
     <!-- Finalize Order Form -->
     <div class="button-container">
