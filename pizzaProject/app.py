@@ -94,28 +94,6 @@ def send_conf_mail():
 
 @app.route('/order', methods=['POST'])
 def order_pizza():
-    # Get the pizza name from the POST request
-    #pizza_name = request.form.get('pizza_name')
-    '''
-    with open(file_path, "r+") as file:
-        try:
-            orders = json.load(file)
-        except json.decoder.JSONDecodeError:
-            orders = {}
-
-    # Check if currentOrder.txt exists and is not empty
-    if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
-        # Load the current orders from the file
-        with open(file_path, "r") as file:
-            for line in file:
-                # Split each line by colon
-                parts = line.strip().split(":")
-                if len(parts) == 2:
-                    orders[parts[0]] = int(parts[1])
-
-    # Increment the count for the ordered pizza
-    orders[pizza_name] = orders.get(pizza_name, 0) + 1
-    '''
     pizza_name = request.form.get('pizza_name')
     # Write the updated orders back to the file
     print(pizza_name)
@@ -221,14 +199,7 @@ def confirm_email(token):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
-    #error = ' '
-
-# try:
     if request.method == "POST":
-        # attempted_username = request.form['Username']
-        # attempted_password = request.form['Password']
-        # attempted_email = request.form['Email']
-        
         with open('data.json', 'r') as outfile: 
             data = json.load(outfile)
         
@@ -380,6 +351,15 @@ def read_info():
 @app.route('/test', methods=['POST'])
 def test():
     return render_template('PizzaMenu.html')
+
+@app.route('/delivered')
+def delivered():
+    with open("Waiter.txt", "r") as f:
+        lines = f.readlines()
+    with open("Waiter.txt", "w") as f:
+        f.writelines(lines[1:])
+    return redirect(url_for('waiters_page'))
+    #return render_template('waiters_page.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
