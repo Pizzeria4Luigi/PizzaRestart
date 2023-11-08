@@ -62,47 +62,39 @@
         {% if pizza[0] == "Margherita" %}
         <div class="menu-item">
             <h2>Margherita</h2>
-            <img class="image" src="PizzaMargherita.webp">
+            <img class="image" src="{{ url_for('static', filename='PizzaMargherita.webp') }}">
         </div>
         {% endif %}
         {% if pizza[0] == "Pepperoni" %}
         <div class="menu-item">
             <h2>Quattro Formaggi</h2>
-            <img class="image" src="Quattro-formaggi-pizza-square.jpg">
+            <img class="image" src="{{ url_for('static', filename='pepperoni-pizza.png') }}">
         </div>
         {% endif %}
         {% if pizza[0] == "Formaggi" %}
         <div class="menu-item">
             <h2>Pepperoni</h2>
-            <img class="image" src="pepperoni-pizza.png">
+            <img class="image" src="{{ url_for('static', filename='Quattro-formaggi-pizza-square.jpg') }}">
         </div>
         {% endif %}
         {% if pizza[0] == "Madness" %}
         <div class="menu-item">
             <h2>Mario's Madness</h2>
-            <img class="image" src="pizza-mushrooms-salami-pepperoni-ham.jpg">
+            <img class="image" src="{{ url_for('static', filename='pizza-mushrooms-salami-pepperoni-ham.jpg') }}">
         </div>
         {% endif %}
         {% if pizza[0] == "Baloney" %}
         <div class="menu-item">
             <h2>Luigi's Baloney</h2>
-            <img class="image" src="Luigi's pizza.jpg">
+            <img class="image" src="{{ url_for('static', filename='Luigis pizza.jpg') }}">
         </div>
         {% endif %}
         {% if pizza[0] == "Buns" %}
         <div class="menu-item">
             <h2>Bowser Buns</h2>
-            <img class="image" src="garlic-bread-recipe-snippet.jpg">
+            <img class="image" src="{{ url_for('static', filename='garlic-bread-recipe-snippet.jpg') }}">
         </div>
         {% endif %}
     {% endfor %}
-    <div class="button-container">
-        <button id="redirectButton" class="buttonOrderNow"><h3>Order Now</h3></button>
-        <script>
-            document.getElementById("redirectButton").addEventListener("click", function() {
-                window.location.href = "Discount.html";
-            });
-        </script>
-    </div>
 </body>
 </html>

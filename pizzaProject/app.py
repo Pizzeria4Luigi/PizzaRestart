@@ -110,7 +110,7 @@ def order_pizza():
 
 @app.route('/success')
 def success():
-    return "Successfully ordered!"
+    return render_template('Success.html')
 
 @app.route('/chef')
 def chef():
@@ -311,8 +311,8 @@ def waiters_page():
 @app.route('/discount', methods=['GET', 'POST'])
 def discount():
     if 'username' in session:
-        flash("Order completed")
-        return render_template('PizzaMenu.html')
+        #flash("Order completed")
+        return redirect(url_for('success'))
     else:
         return render_template('Discount.html')
     
