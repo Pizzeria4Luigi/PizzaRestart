@@ -1,6 +1,10 @@
 import os
 import json
 
+import requests
+
+import pip._vendor.requests
+
 # Define global variables and data structures
 menu = {
     1: {"name": "Margherita", "price": 10, "ingredients": {"dough": 1, "tomato sauce": 1, "cheese": 1}},
@@ -17,6 +21,57 @@ file_path = os.path.join(os.path.dirname(__file__), "ingredients.txt")
 current_order_path = os.path.join(os.path.dirname(__file__), "currentOrder.json")
 order_log_path = os.path.join(os.path.dirname(__file__), "orderLog.txt")
 
+ingredients_file = os.path.join(os.path.dirname(__file__), "ingredients.txt")
+pizza_availability_file = os.path.join(os.path.dirname(__file__), "pizzaAvailability.txt")
+
+def load_ingredient_stock():
+    try:
+        with open(ingredients_file, "r") as file:
+            for line in file:
+                ingredient, quantity = line.strip().split(":")
+                ingredient_stock[ingredient] = int(quantity)
+    except FileNotFoundError:
+        print("Ingredients file not found. Using default quantities.")
+
+def update_pizza_availability():
+    with open(pizza_availability_file, "w") as file:
+        for item, pizza in menu.items():
+            available = True
+            for ingredient, quantity in pizza['ingredients'].items():
+                if ingredient not in ingredient_stock or ingredient_stock[ingredient] < quantity:
+                    available = False
+                    break
+            file.write(f"{item}:{'True' if available else 'False'}\n")
+
+
+def send_data():
+    with open('pizzaAvailability.txt', 'r') as file:
+        pizzaStatus = {}
+        for line in file:
+            pizza_id, availability = line.strip().split(':')
+            pizzaStatus[pizza_id.strip()] = availability.strip() == 'True'
+
+    print(pizzaStatus)  # Add this line to check if pizzaStatus is correctly constructed
+
+    response = requests.post('http://localhost:5000/pizzaStatus', json=pizzaStatus)
+    
+    print(response.text)  # Add this line to check the response from your Flask application
+
+load_ingredient_stock()
+
+# Update pizza availability
+update_pizza_availability()
+
+send_data()
+
+# Display pizza availability
+with open(pizza_availability_file, "r") as file:
+    for line in file:
+        item, available = line.strip().split(":")
+        item_name = menu[int(item)]['name']
+        print(f"{item_name} - Available: {available}")
+
+'''       
 def load_ingredient_stock():
     try:
         with open(file_path, "r") as file:
@@ -25,6 +80,7 @@ def load_ingredient_stock():
                 ingredient_stock[ingredient] = int(quantity)
     except FileNotFoundError:
         print("Ingredients file not found. Using default quantities.")
+'''
 
 def save_ingredient_stock():
     with open(file_path, "w") as file:
@@ -97,6 +153,8 @@ def log_order(table_id, order, total_price):
         log_file.write(f"Total Price: ${total_price}\n")
         log_file.write("\n")
 
+
+
 if __name__ == "__main__":
     print("\nWelcome to Pizzeria di Mario e Luigi!")
     load_ingredient_stock()
@@ -107,3 +165,5 @@ if __name__ == "__main__":
         take_order(table_id)
 
     print("Thank you for your orders. Enjoy your pizza!")
+
+

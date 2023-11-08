@@ -197,10 +197,10 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Luigi's Baloney</h2>
-    <img class="image" src="{{ url_for('static', filename='Luigis pizza.jpg') }}">
-    <button id="orderButton5" data-pizza-name="Baloney" class="{{ 'buttonOrderNow' if Baloney == True else 'buttonUnavailable' }}">
-        {{ 'Order Now' if Baloney == True else 'Unavailable' }}
-    </button>
+    <div>
+        <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
+    </div>  
+    <button onclick="orderPizza('Baloney')" class="buttonOrderNow">Order Now</button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

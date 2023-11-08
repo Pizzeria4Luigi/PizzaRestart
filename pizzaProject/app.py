@@ -6,9 +6,27 @@ import time
 import json
 from flask import Flask, request, jsonify
 import os
+import subprocess
+
+global Margherita
+global Pepperoni
+global Formaggi
+global Madness
+global Baloney
+global Buns
+
+Margherita = None
+Pepperoni = None
+Formaggi = None
+Madness = None
+Baloney = None
+Buns = None
+
 
 global chef_orders_dict
 chef_orders_dict = []
+
+pizzaStatus=[]
 
 app = Flask(__name__)
 file_path = os.path.join(os.path.dirname(__file__), "currentOrder.txt")
@@ -23,6 +41,15 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
+
+# Run pizzamenusystem.py before starting the Flask app
+try:
+    result = subprocess.check_output(['python', 'pizzamenusystem.py'], stderr=subprocess.STDOUT, text=True)
+    # Process the result or capture any output from the script
+    print(result)
+except subprocess.CalledProcessError as e:
+    # Handle any errors if the script didn't run successfully
+    print(f"Error running pizzamenusystem.py: {e.output}")
 
 # Function to generate the confirmation token
 def generate_confirmation_token(email):
@@ -49,9 +76,11 @@ def Main():
         session["Table"] = ref_value
     #print(session["Table"])
     if 'username' in session:
-        return render_template('PizzaMenu.html', username=session['username'])
+        return render_template('PizzaMenu.html', username=session['username'], 
+                               Margherita=Margherita, Pepperoni=Pepperoni, Formaggi=Formaggi, Madness=Madness, Baloney=Baloney, Buns=Buns)
     else:
-        return render_template('PizzaMenu.html')
+        return render_template('PizzaMenu.html', 
+                               Margherita=Margherita, Pepperoni=Pepperoni, Formaggi=Formaggi, Madness=Madness, Baloney=Baloney, Buns=Buns)
     
 @app.route('/send-conf-mail', methods=['GET', 'POST'])
 def send_conf_mail():
@@ -352,15 +381,6 @@ def read_info():
 def test():
     return render_template('PizzaMenu.html')
 
-@app.route('/delivered')
-def delivered():
-    with open("Waiter.txt", "r") as f:
-        lines = f.readlines()
-    with open("Waiter.txt", "w") as f:
-        f.writelines(lines[1:])
-    return redirect(url_for('waiters_page'))
-    #return render_template('waiters_page.html')
-    
 if __name__ == "__main__":
     app.run(debug=True)
         
