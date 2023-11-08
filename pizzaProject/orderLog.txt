@@ -477,3 +477,23 @@ Baloney - Quantity: 0 - $14 each
 Buns - Quantity: 0 - $7 each
 Total Price: $0
 
+Table 1 Order:
+Margherita - Quantity: 0 - $10 each
+Pepperoni - Quantity: 0 - $12 each
+Total Price: $0
+
+Table 2 Order:
+Margherita - Quantity: 1 - $10 each
+Pepperoni - Quantity: 1 - $12 each
+Total Price: $22
+
+Table 3 Order:
+Margherita - Quantity: 0 - $10 each
+Pepperoni - Quantity: 0 - $12 each
+Total Price: $0
+
+Table 4 Order:
+Margherita - Quantity: 0 - $10 each
+Pepperoni - Quantity: 0 - $12 each
+Total Price: $0
+
