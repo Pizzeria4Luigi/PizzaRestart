@@ -203,7 +203,7 @@ def login_page():
         with open('data.json', 'r') as outfile: 
             data = json.load(outfile)
         
-        print(session['email_confitmed'])
+        print(session['email_confirmed'])
        
         if session['email_confitmed'] == True:
             for user in data:
