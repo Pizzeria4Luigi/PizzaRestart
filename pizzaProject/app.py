@@ -6,7 +6,8 @@ import time
 import json
 from flask import Flask, request, jsonify
 
-chef_orders_dict = None
+global chef_orders_dict
+chef_orders_dict = []
 
 app = Flask(__name__)
 file_path = os.path.join(os.path.dirname(__file__), "currentOrder.txt")
@@ -42,10 +43,11 @@ def confirm_token(token, expiration=3600):  # Token expiration time set to 1 hou
 
 @app.route('/',methods=['GET', 'POST'])
 def Main():
+    print("MAIN ROTE")
     if request.args.get('ref') is not None:
         ref_value = request.args.get('ref')
         session["Table"] = ref_value
-    print(session["Table"])
+    #print(session["Table"])
     if 'username' in session:
         return render_template('PizzaMenu.html', username=session['username'])
     else:
@@ -106,15 +108,17 @@ def success():
 @app.route('/chef')
 def chef():
     with open('currentOrder.json', 'r') as f:
-        global chef_orders_dict
-        chef_orders_dict = []
+        #chef_orders_dict = []
         data = json.load(f)
         _dict = data[int(session["Table"])-1]
+        for x in range(len(chef_orders_dict)):
+            chef_orders_dict.pop(0)
         for table in range(len(data)):
             for pizza in data[int(session["Table"])-1]:
                 while _dict[pizza] != 0:
-                    chef_orders_dict.append([pizza, _dict[pizza]])
+                    chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
                     _dict[pizza] = _dict[pizza] - 1
+        print(chef_orders_dict)
     return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -310,10 +314,33 @@ def read_info():
     remove_order = request.get_json()
     if remove_order.get('status') == True:
         print("WORKS")
-        #chef_orders_dict = chef_orders_dict.pop(0)
+        print(chef_orders_dict)
+        pizza_to_delete = chef_orders_dict[0][0]
+        table_to_delete = chef_orders_dict[0][2]
+        
+        with open('currentOrder.json', 'r') as f:
+            data = json.load(f)
+            _dict = data[int(table_to_delete) - 1]
+            print(_dict)
+            #print(_dict)
+            print(_dict[pizza_to_delete])
+            _dict[pizza_to_delete] -= 1
+            print(_dict)
+        with open('currentOrder.json', 'w') as outfile:  
+            json.dump(data, outfile, indent=4)
+            #data.append(_dict)
+        #print(data)
         #print(chef_orders_dict)
-        return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
+        #chef_orders_dict = []
+        x = 5
+        print(x)
+        
+        return redirect(url_for('test'))
     return "OK"
+
+@app.route('/test', methods=['POST'])
+def test():
+    return render_template('PizzaMenu.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
