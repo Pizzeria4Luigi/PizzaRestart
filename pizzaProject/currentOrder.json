@@ -1,34 +1,34 @@
 [
     {
+        "Margherita": 0,
+        "Pepperoni": 0,
+        "Formaggi": 0,
+        "Madness": 0,
+        "Baloney": 0,
+        "Buns": 0
+    },
+    {
         "Margherita": 1,
-        "Pepperoni": 0,
-        "Quattro Formaggi": 0,
-        "Mario's Madness": 0,
-        "Luigi's Baloney": 0,
-        "Bowser Buns": 0
-    },
-    {
-        "Margherita": 0,
         "Pepperoni": 1,
-        "Quattro Formaggi": 0,
-        "Mario's Madness": 0,
-        "Luigi's Baloney": 1,
-        "Bowser Buns": 0
+        "Formaggi": 0,
+        "Madness": 0,
+        "Baloney": 0,
+        "Buns": 0
     },
     {
         "Margherita": 0,
         "Pepperoni": 0,
-        "Quattro Formaggi": 0,
-        "Mario's Madness": 3,
-        "Luigi's Baloney": 0,
-        "Bowser Buns": 0
+        "Formaggi": 0,
+        "Madness": 0,
+        "Baloney": 0,
+        "Buns": 0
     },
     {
         "Margherita": 0,
         "Pepperoni": 0,
-        "Quattro Formaggi": 0,
-        "Mario's Madness": 0,
-        "Luigi's Baloney": 0,
-        "Bowser Buns": 4
+        "Formaggi": 0,
+        "Madness": 0,
+        "Baloney": 0,
+        "Buns": 0
     }
 ]
