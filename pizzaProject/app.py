@@ -289,14 +289,14 @@ def new():
 @app.route('/waiters_page', methods=['GET', 'POST'])
 def waiters_page():
     orders = []
-    _dict = {1 : "Margherita", 2 : "Pepperoni", 3 : "Quattro Formaggi", 4 : "Mario's Madness", 5 : "Luigi's Baloney", 6 : "Bowser Buns"}
+    _dict = {"Margherita" : "Margherita", "Pepperoni" : "Pepperoni", "Quattro Formaggi" : "Quattro Formaggi", "Mario's Madness" : "Mario's Madness", "Luigi's Baloney" : "Luigi's Baloney", "Bowser Buns" : "Bowser Buns"}
     while True:
         time.sleep(10)
-        with open('C:/Users/Dalecky/Desktop/University/Week9/test/currentOrder.txt', 'r') as file:
+        with open('Waiter.txt', 'r') as file:
             data = file.readlines()
             for line in data:
                 line = line.split(":")
-                order = str(f"Table {int(line[1])} ordered {_dict[int(line[0])]}")
+                order = str(f"Table {int(line[1])} ordered {_dict[line[0]]}")
                 orders.append(order)
             print(orders)
         return render_template('waiters_page.html', orders=orders)
@@ -328,13 +328,9 @@ def read_info():
             print(_dict)
         with open('currentOrder.json', 'w') as outfile:  
             json.dump(data, outfile, indent=4)
-            #data.append(_dict)
-        #print(data)
-        #print(chef_orders_dict)
-        #chef_orders_dict = []
-        x = 5
-        print(x)
         
+        with open("Waiter.txt", "w") as file:
+            file.write(str(f"{pizza_to_delete}:{table_to_delete}"))
         return redirect(url_for('test'))
     return "OK"
 
