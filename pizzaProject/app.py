@@ -5,6 +5,7 @@ from itsdangerous import URLSafeTimedSerializer
 import time
 import json
 from flask import Flask, request, jsonify
+import os
 
 global chef_orders_dict
 chef_orders_dict = []
@@ -118,7 +119,7 @@ def chef():
                 while _dict[pizza] != 0:
                     chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
                     _dict[pizza] = _dict[pizza] - 1
-        print(chef_orders_dict)
+        #print(chef_orders_dict)
     return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -289,14 +290,15 @@ def new():
 @app.route('/waiters_page', methods=['GET', 'POST'])
 def waiters_page():
     orders = []
-    _dict = {"Margherita" : "Margherita", "Pepperoni" : "Pepperoni", "Quattro Formaggi" : "Quattro Formaggi", "Mario's Madness" : "Mario's Madness", "Luigi's Baloney" : "Luigi's Baloney", "Bowser Buns" : "Bowser Buns"}
+    _dict = {"Margherita" : "Margherita", "Pepperoni" : "Pepperoni", "Formaggi" : "Formaggi", "Madness" : "Madness", "Baloney" : "Baloney", "Buns" : "Buns"}
     while True:
         time.sleep(10)
         with open('Waiter.txt', 'r') as file:
             data = file.readlines()
             for line in data:
                 line = line.split(":")
-                order = str(f"Table {int(line[1])} ordered {_dict[line[0]]}")
+                #order = str(f"Table {int(line[1])} ordered {_dict[line[0]]}")
+                order = [int(line[1]), _dict[line[0]]]
                 orders.append(order)
             print(orders)
         return render_template('waiters_page.html', orders=orders)
@@ -329,8 +331,16 @@ def read_info():
         with open('currentOrder.json', 'w') as outfile:  
             json.dump(data, outfile, indent=4)
         
-        with open("Waiter.txt", "w") as file:
-            file.write(str(f"{pizza_to_delete}:{table_to_delete}"))
+        with open("Waiter.txt", "a") as file:
+            '''
+            if os.path.getsize("Waiter.txt") > 0:
+                lines = file.readlines()
+                print("Works!!!")
+                lines[-1].write(str(f"{pizza_to_delete}:{table_to_delete}\n"))
+            else:
+            '''
+            file.write(str(f"{pizza_to_delete}:{table_to_delete}") + "\n")
+            file.save()
         return redirect(url_for('test'))
     return "OK"
 
