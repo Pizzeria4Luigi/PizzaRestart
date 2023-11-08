@@ -340,7 +340,6 @@ def read_info():
             else:
             '''
             file.write(str(f"{pizza_to_delete}:{table_to_delete}") + "\n")
-            file.save()
         return redirect(url_for('test'))
     return "OK"
 
@@ -348,6 +347,17 @@ def read_info():
 def test():
     return render_template('PizzaMenu.html')
 
+@app.route('/delivered', methods=['POST'])
+def delivered():
+    print("FIRST")
+    with open("Waiter.txt", "r") as f:
+        lines = f.readlines()
+    print("SECOND")
+    with open("Waiter.txt", "w") as f:
+        f.writelines(lines[1:])
+    print("THIRD")
+    return redirect(url_for('waiters_page'))
+    
 if __name__ == "__main__":
     app.run(debug=True)
         

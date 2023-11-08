@@ -57,41 +57,42 @@
     <header>
         <h1>Orders</h1>
         <meta http-equiv="refresh" content="5">
+        <a href="/delivered"><button type = "submit">Delivered</button></a>
     </header>
     {% for pizza in orders %}
         {% if pizza[1] == "Margherita" %}
         <div class="menu-item">
-            <h2>Margherita</h2>
+            <h2>Margherita to {{pizza[0]}} table.</h2>
             <img class="image" src="PizzaMargherita.webp">
         </div>
         {% endif %}
         {% if pizza[1] == "Pepperoni" %}
         <div class="menu-item">
-            <h2>Quattro Formaggi</h2>
+            <h2>Quattro Formaggi to {{pizza[0]}} table.</h2>
             <img class="image" src="Quattro-formaggi-pizza-square.jpg">
         </div>
         {% endif %}
         {% if pizza[1] == "Formaggi" %}
         <div class="menu-item">
-            <h2>Pepperoni</h2>
+            <h2>Pepperoni to {{pizza[0]}} table.</h2>
             <img class="image" src="pepperoni-pizza.png">
         </div>
         {% endif %}
         {% if pizza[1] == "Madness" %}
         <div class="menu-item">
-            <h2>Mario's Madness</h2>
+            <h2>Mario's Madness to {{pizza[0]}} table.</h2>
             <img class="image" src="pizza-mushrooms-salami-pepperoni-ham.jpg">
         </div>
         {% endif %}
         {% if pizza[1] == "Baloney" %}
         <div class="menu-item">
-            <h2>Luigi's Baloney</h2>
+            <h2>Luigi's Baloney to {{pizza[0]}} table.</h2>
             <img class="image" src="Luigi's pizza.jpg">
         </div>
         {% endif %}
         {% if pizza[1] == "Buns" %}
         <div class="menu-item">
-            <h2>Bowser Buns</h2>
+            <h2>Bowser Buns to {{pizza[0]}} table.</h2>
             <img class="image" src="garlic-bread-recipe-snippet.jpg">
         </div>
         {% endif %}
