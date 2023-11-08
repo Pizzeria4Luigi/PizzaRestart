@@ -89,10 +89,12 @@
     <header>
         {% if username %}
             <h1> Welcome, {{ username }}! This is our Menu </h1>
+            <a href="/logout" class="login-button">Logout</a>
         {% else %}
             <h1> Welcome! This is our Menu </h1>
+            <a href="/login" class="login-button">Login</a>
         {% endif %}
-        <a href="/login" class="login-button">Login</a>
+
         </header>
     <div class="cart-icon">
         <a href="/orders"><img class="cart-icon-img" src="static/shopping-cart-icon-removebg-preview.png"></a>

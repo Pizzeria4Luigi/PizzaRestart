@@ -118,15 +118,15 @@ def chef():
         with open('currentOrder.json', 'r') as f:
             #chef_orders_dict = []
             data = json.load(f)
-            _dict = data[int(session["Table"])-1]
             for x in range(len(chef_orders_dict)):
-                chef_orders_dict.pop(0)
-            for table in range(len(data)):
-                for pizza in data[int(session["Table"])-1]:
+                    chef_orders_dict.pop(0)
+            for _dict in data:
+                #_dict = data[int(session["Table"])-1]
+                for pizza in _dict:
                     while _dict[pizza] != 0:
                         chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
                         _dict[pizza] = _dict[pizza] - 1
-            #print(chef_orders_dict)
+                #print(chef_orders_dict)
         return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
     else:
         return "You dont have access to this page"
