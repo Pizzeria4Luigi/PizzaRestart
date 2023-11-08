@@ -230,6 +230,33 @@ def orders():
     print(orders_dict)
     return render_template('Orders.html', data=orders_dict, table = session["Table"])
 
+@app.route('/change-quantity', methods=['POST'])
+def change_quantity():
+    pizza_type = request.form['pizzaType']
+    action = request.form['action']  # "increment" or "decrement"
+    table_index = int(session["Table"]) - 1
+
+    with open('currentOrder.json', 'r+') as f:
+        orders = json.load(f)
+        if action == 'increment':
+            orders[table_index][pizza_type] += 1
+        elif action == 'decrement' and orders[table_index][pizza_type] > 0:
+            orders[table_index][pizza_type] -= 1
+
+        f.seek(0)
+        json.dump(orders, f, indent=4)
+        f.truncate()
+
+    return redirect(url_for('orders'))
+
+@app.route('/finalize-order', methods=['POST'])
+def finalize_order():
+    # ... your logic to finalize the order ...
+    # For now, it will just redirect to the discount page.
+    return redirect(url_for('discount'))
+
+
+
 @app.route('/forgotten_password', methods=['GET', 'POST'])
 def forgotten_password():
     if request.method == "POST":

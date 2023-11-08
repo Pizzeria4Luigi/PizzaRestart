@@ -72,97 +72,41 @@
     <header>
         <h1>Orders</h1>
     </header>
-    {% if data["Margherita"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/PizzaMargherita.webp">
-        <div class="content">
-            <h2>Margherita</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Margherita'] }}" id="MargheritaQuantity" readonly>
-            <button onclick="decrement('MargheritaQuantity')">-</button>
-            <button onclick="increment('MargheritaQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
-    {% if data["Pepperoni"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/pepperoni-pizza.png">
-        <div class="content">
-            <h2>Pepperoni</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Pepperoni'] }}" id="PepperoniQuantity" readonly>
-            <button onclick="decrement('PepperoniQuantity')">-</button>
-            <button onclick="increment('PepperoniQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
-    {% if data["Formaggi"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
-        <div class="content">
-            <h2>Quattro Formaggi</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Formaggi'] }}" id="FormaggiQuantity" readonly>
-            <button onclick="decrement('FormaggiQuantity')">-</button>
-            <button onclick="increment('FormaggiQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
-    {% if data["Madness"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
-        <div class="content">
-            <h2>Mario's Madness</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Madness'] }}" id="MadnessQuantity" readonly>
-            <button onclick="decrement('MadnessQuantity')">-</button>
-            <button onclick="increment('MadnessQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
-    {% if data["Baloney"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/Luigi's pizza.jpg">
-        <div class="content">
-            <h2>Luigi's Baloney</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Baloney'] }}" id="BaloneyQuantity" readonly>
-            <button onclick="decrement('BaloneyQuantity')">-</button>
-            <button onclick="increment('BaloneyQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
-    {% if data["Buns"] > 0 %}
-    <div class="menu-item">
-        <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
-        <div class="content">
-            <h2>Bowser Buns</h2>
-        </div>
-        <div class="quantity">
-            <span>Quantity:</span>
-            <input type="text" value="{{ data['Buns'] }}" id="BunsQuantity" readonly>
-            <button onclick="decrement('BunsQuantity')">-</button>
-            <button onclick="increment('BunsQuantity')">+</button>
-        </div>
-    </div>
-    {% endif %}
+
+    {% for pizza, quantity in data.items() %}
+        {% if quantity > 0 %}
+            <div class="menu-item">
+                <!-- Image for pizza; you'll need to set the correct image for each pizza -->
+                <img class="image" src="static/{{ pizza|lower }}.jpg">
+                <div class="content">
+                    <h2>{{ pizza.replace('_', ' ') }}</h2>
+                </div>
+                <div class="quantity">
+                    <form method="post" action="{{ url_for('change_quantity') }}" style="display: inline;">
+                        <input type="hidden" name="pizzaType" value="{{ pizza }}">
+                        <input type="hidden" name="action" value="decrement">
+                        <button type="submit">-</button>
+                    </form>
+                    <span> {{ quantity }} </span>
+                    <form method="post" action="{{ url_for('change_quantity') }}" style="display: inline;">
+                        <input type="hidden" name="pizzaType" value="{{ pizza }}">
+                        <input type="hidden" name="action" value="increment">
+                        <button type="submit">+</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Finalize Order Form -->
     <div class="button-container">
-        <button id="redirectButton" class="buttonOrderNow"><h3>Order Now</h3></button>
-        <script>
-            document.getElementById("redirectButton").addEventListener("click", function() {
-                window.location.href = "/discount";
-            });
-        </script>
+        <form method="post" action="{{ url_for('finalize_order') }}">
+            <button id="redirectButton" class="buttonOrderNow"><h3>Order Now</h3></button>
+        </form>
     </div>
 </body>
 </html>
+
+
+
+
