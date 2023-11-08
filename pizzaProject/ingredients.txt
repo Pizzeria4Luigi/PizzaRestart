@@ -1,7 +1,7 @@
-dough:494
-tomato sauce:494
-cheese:494
-pepperoni:497
+dough:490
+tomato sauce:490
+cheese:490
+pepperoni:495
 mushrooms:500
 ham:500
 sausage:500
