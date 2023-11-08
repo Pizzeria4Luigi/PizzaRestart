@@ -33,12 +33,24 @@
             width: 40px;
         }
         .login-button {
-            border: 1px solid #ccc;
-            background-color: #ccc;
-            position: absolute;
-            top: 12px;
-            right: 12px;
-        }
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #ccc;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.login-button:hover {
+    background-color: #999;
+    border-color: #999;
+}
+
         .menu-item {
             border: 1px solid #ccc;
             margin: 20px;
@@ -80,15 +92,18 @@
         {% else %}
             <h1> Welcome! This is our Menu </h1>
         {% endif %}
-    </header>
+        <a href="/login" class="login-button">Login</a>
+        </header>
     <div class="cart-icon">
         <a href="/orders"><img class="cart-icon-img" src="static/shopping-cart-icon-removebg-preview.png"></a>
     </div>
 
     <div class="menu-item">
         <h2>Margherita</h2>
-        <img id="img1" class="image" src="static/PizzaMargherita.webp">
-        <button onclick="orderPizza('Margherita')" class="buttonOrderNow">Order Now</button>
+        <img class="image" src="{{ url_for('static', filename='PizzaMargherita.webp') }}">
+        <button id="orderButton1" data-pizza-name="Margherita" class="{{ 'buttonOrderNow' if Margherita == True else 'buttonUnavailable' }}">
+            {{ 'Order Now' if Margherita == True else 'Unavailable' }}
+        </button>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -106,8 +121,10 @@
 
 <div class="menu-item">
     <h2>Pepperoni</h2>
-    <img class="image" src="static/pepperoni-pizza.png">
-    <button onclick="orderPizza('Pepperoni')" class="buttonOrderNow">Order Now</button>
+    <img class="image" src="{{ url_for('static', filename='pepperoni-pizza.png') }}">
+    <button id="orderButton2" data-pizza-name="Pepperoni" class="{{ 'buttonOrderNow' if Pepperoni == True else 'buttonUnavailable' }}">
+        {{ 'Order Now' if Pepperoni == True else 'Unavailable' }}
+    </button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -125,8 +142,10 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Quattro Formaggi</h2>
-    <img class="image" src="static/Quattro-formaggi-pizza-square.jpg">
-    <button onclick="orderPizza('Formaggi')" class="buttonOrderNow">Order Now</button>
+    <img class="image" src="{{ url_for('static', filename='Quattro-formaggi-pizza-square.jpg') }}">
+    <button id="orderButton3" data-pizza-name="Formaggi" class="{{ 'buttonOrderNow' if Formaggi == True else 'buttonUnavailable' }}">
+        {{ 'Order Now' if Formaggi == True else 'Unavailable' }}
+    </button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -144,8 +163,10 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Mario's Madness</h2>
-    <img class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
-    <button onclick="orderPizza('Madness')" class="buttonOrderNow">Order Now</button>
+    <img class="image" src="{{ url_for('static', filename='pizza-mushrooms-salami-pepperoni-ham.jpg') }}">
+    <button id="orderButton4" data-pizza-name="Madness" class="{{ 'buttonOrderNow' if Madness == True else 'buttonUnavailable' }}">
+        {{ 'Order Now' if Madness == True else 'Unavailable' }}
+    </button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -176,10 +197,10 @@ function orderPizza(pizzaName) {
 
 <div class="menu-item">
     <h2>Luigi's Baloney</h2>
-    <div>
-        <img id="pic1" class="image" src="static/pizza-mushrooms-salami-pepperoni-ham.jpg">
-    </div>  
-    <button onclick="orderPizza('Baloney')" class="buttonOrderNow">Order Now</button>
+    <img class="image" src="{{ url_for('static', filename='Luigis pizza.jpg') }}">
+    <button id="orderButton5" data-pizza-name="Baloney" class="{{ 'buttonOrderNow' if Baloney == True else 'buttonUnavailable' }}">
+        {{ 'Order Now' if Baloney == True else 'Unavailable' }}
+    </button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -196,12 +217,16 @@ function orderPizza(pizzaName) {
 </script>
 <div class="menu-item">
     <h2>Bowser Buns</h2>
-    <img class="image" src="static/garlic-bread-recipe-snippet.jpg">
-    <button onclick="orderPizza('Buns')" class="buttonOrderNow">Order Now</button>
+    <img class="image" src="{{ url_for('static', filename='garlic-bread-recipe-snippet.jpg') }}">
+    <button id="orderButton6" data-pizza-name="Buns" class="{{ 'buttonOrderNow' if Buns == True else 'buttonUnavailable' }}">
+        {{ 'Order Now' if Buns == True else 'Unavailable' }}
+    </button>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-function orderPizza(pizzaName) {
+$(document).ready(function () {
+        $('.buttonOrderNow').on('click', function () {
+            var pizzaName = $(this).data('pizza-name');
     $.ajax({
         type: "POST",
         url: "/order",
@@ -210,7 +235,8 @@ function orderPizza(pizzaName) {
             console.log(response);
         }
     });
-}
+    });
+});
 </script>
 </body>
 </html>

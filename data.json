@@ -158,5 +158,20 @@
         "email": "adriansdaleckis17@gmail.com",
         "pass": "qwerty",
         "user": "Adrian_17"
+    },
+    {
+        "email": "chef@gmail.com",
+        "pass": "qwerty",
+        "user": "Chef"
+    },
+    {
+        "email": "waiter@gmail.com",
+        "pass": "qwerty",
+        "user": "Waiter"
+    },
+    {
+        "email": "adriansdaleckis20@gmail.com",
+        "pass": "qwerty",
+        "user": "Adrian_20"
     }
 ]

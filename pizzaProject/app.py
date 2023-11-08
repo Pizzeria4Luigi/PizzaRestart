@@ -44,7 +44,6 @@ def confirm_token(token, expiration=3600):  # Token expiration time set to 1 hou
 
 @app.route('/',methods=['GET', 'POST'])
 def Main():
-    print("MAIN ROTE")
     if request.args.get('ref') is not None:
         ref_value = request.args.get('ref')
         session["Table"] = ref_value
@@ -108,19 +107,22 @@ def success():
 
 @app.route('/chef')
 def chef():
-    with open('currentOrder.json', 'r') as f:
-        #chef_orders_dict = []
-        data = json.load(f)
-        _dict = data[int(session["Table"])-1]
-        for x in range(len(chef_orders_dict)):
-            chef_orders_dict.pop(0)
-        for table in range(len(data)):
-            for pizza in data[int(session["Table"])-1]:
-                while _dict[pizza] != 0:
-                    chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
-                    _dict[pizza] = _dict[pizza] - 1
-        #print(chef_orders_dict)
-    return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
+    if session["username"] == "Chef":
+        with open('currentOrder.json', 'r') as f:
+            #chef_orders_dict = []
+            data = json.load(f)
+            _dict = data[int(session["Table"])-1]
+            for x in range(len(chef_orders_dict)):
+                chef_orders_dict.pop(0)
+            for table in range(len(data)):
+                for pizza in data[int(session["Table"])-1]:
+                    while _dict[pizza] != 0:
+                        chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
+                        _dict[pizza] = _dict[pizza] - 1
+            #print(chef_orders_dict)
+        return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
+    else:
+        return "You dont have access to this page"
 
 @app.route('/registration', methods=['GET', 'POST'])
 def Register_page1():
@@ -289,19 +291,22 @@ def new():
 
 @app.route('/waiters_page', methods=['GET', 'POST'])
 def waiters_page():
-    orders = []
-    _dict = {"Margherita" : "Margherita", "Pepperoni" : "Pepperoni", "Formaggi" : "Formaggi", "Madness" : "Madness", "Baloney" : "Baloney", "Buns" : "Buns"}
-    while True:
-        time.sleep(10)
-        with open('Waiter.txt', 'r') as file:
-            data = file.readlines()
-            for line in data:
-                line = line.split(":")
-                #order = str(f"Table {int(line[1])} ordered {_dict[line[0]]}")
-                order = [int(line[1]), _dict[line[0]]]
-                orders.append(order)
-            print(orders)
-        return render_template('waiters_page.html', orders=orders)
+    if session["username"] == "Waiter":
+        orders = []
+        _dict = {"Margherita" : "Margherita", "Pepperoni" : "Pepperoni", "Formaggi" : "Formaggi", "Madness" : "Madness", "Baloney" : "Baloney", "Buns" : "Buns"}
+        while True:
+            time.sleep(10)
+            with open('Waiter.txt', 'r') as file:
+                data = file.readlines()
+                for line in data:
+                    line = line.split(":")
+                    #order = str(f"Table {int(line[1])} ordered {_dict[line[0]]}")
+                    order = [int(line[1]), _dict[line[0]]]
+                    orders.append(order)
+                print(orders)
+            return render_template('waiters_page.html', orders=orders)
+    else:
+        return "You dont have access to this page"
 
 @app.route('/discount', methods=['GET', 'POST'])
 def discount():
@@ -347,16 +352,14 @@ def read_info():
 def test():
     return render_template('PizzaMenu.html')
 
-@app.route('/delivered', methods=['POST'])
+@app.route('/delivered')
 def delivered():
-    print("FIRST")
     with open("Waiter.txt", "r") as f:
         lines = f.readlines()
-    print("SECOND")
     with open("Waiter.txt", "w") as f:
         f.writelines(lines[1:])
-    print("THIRD")
     return redirect(url_for('waiters_page'))
+    #return render_template('waiters_page.html')
     
 if __name__ == "__main__":
     app.run(debug=True)
