@@ -23,5 +23,20 @@
         "email": "adriansd@inbox.lv",
         "pass": "qwerty",
         "user": "User2"
+    },
+    {
+        "email": "test_user@gmail.com",
+        "pass": "qwerty",
+        "user": "Test_user"
+    },
+    {
+        "email": "test_user2@gmail.com",
+        "pass": "qwerty",
+        "user": "Test_user2"
+    },
+    {
+        "email": "test_user3@gmail.com",
+        "pass": "qwerty",
+        "user": "Test_user3"
     }
 ]
