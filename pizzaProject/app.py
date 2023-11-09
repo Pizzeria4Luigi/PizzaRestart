@@ -143,22 +143,14 @@ def Register_page1():
             d = {"email": "", "pass": "", "user": ""}
             with open('data.json', 'r') as outfile: 
                 data = json.load(outfile)
-
-            print(data)
-                # json.load(d, outfile)
-            # d = {"email": "", "pass": "", "user": ""}
             
 
             for user in data:
-                print(user['email'])
-                print(attempted_email)
                 if user['email'] == attempted_email:
                     flash(f'User with email {attempted_email} already exists.')
                     return render_template('RegisterPage.html')
 
             for user in data:
-                print(user['user'])
-                print(attempted_email)
                 if user['user'] == attempted_username:
                     flash(f'User with username {attempted_username} already exists.')
                     return render_template('RegisterPage.html')
@@ -175,7 +167,8 @@ def Register_page1():
             token = generate_confirmation_token(attempted_email)  # You will need to implement this function
             confirm_url = f'http://127.0.0.1:5000/confirm_email/{token}'  # Replace with your website URL
             html = render_template('confirmation_email.html', confirm_url=confirm_url)
-            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = ['adriansdaleckis@gmail.com'])
+            print(attempted_email)
+            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = [attempted_email])
             message.html = html
             mail.send(message)
 
@@ -367,6 +360,19 @@ def delivered():
         f.writelines(lines[1:])
     return redirect(url_for('waiters_page'))
     #return render_template('waiters_page.html')
+
+@app.route('/pizzaStatus', methods = ['POST'])
+def Read_info():
+    global Margherita, Pepperoni, Formaggi, Madness, Baloney, Buns
+    data = request.get_json()
+    Margherita = data['1']
+    Pepperoni = data['2']
+    Formaggi = data['3']
+    Madness = data["4"]
+    Baloney = data["5"]
+    Buns = data['6']
+
+    return "OK"
 
 if __name__ == "__main__":
     app.run(debug=True)
