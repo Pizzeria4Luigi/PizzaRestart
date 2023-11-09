@@ -45,7 +45,7 @@ def update_pizza_availability():
 
 
 def send_data():
-    with open('pizzaAvailability.txt', 'r') as file:
+    with open( pizza_availability_file, 'r') as file:
         pizzaStatus = {}
         for line in file:
             pizza_id, availability = line.strip().split(':')
