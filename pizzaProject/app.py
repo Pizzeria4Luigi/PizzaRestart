@@ -173,7 +173,7 @@ def Register_page1():
             token = generate_confirmation_token(attempted_email)  # You will need to implement this function
             confirm_url = f'http://127.0.0.1:5000/confirm_email/{token}'  # Replace with your website URL
             html = render_template('confirmation_email.html', confirm_url=confirm_url)
-            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = ['adriansdaleckis@gmail.com'])
+            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = [attempted_email])
             message.html = html
             mail.send(message)
 

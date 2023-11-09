@@ -25,9 +25,9 @@
     },
     {
         "Margherita": 0,
-        "Pepperoni": 1,
+        "Pepperoni": 0,
         "Formaggi": 0,
-        "Madness": 1,
+        "Madness": 0,
         "Baloney": 0,
         "Buns": 0
     }

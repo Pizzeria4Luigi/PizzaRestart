@@ -18,5 +18,10 @@
         "email": "user1@gmail.com",
         "pass": "qwerty",
         "user": "User1"
+    },
+    {
+        "email": "adriansd@inbox.lv",
+        "pass": "qwerty",
+        "user": "User2"
     }
 ]
