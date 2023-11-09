@@ -36,7 +36,7 @@ app.static_folder = 'static'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465  # or the appropriate port
 app.config['MAIL_USERNAME'] = 'adriansdaleckis@gmail.com'
-app.config['MAIL_PASSWORD'] = 'dqdz iiml mnvo nrdu'
+app.config['MAIL_PASSWORD'] = 'umdj tatc wdzd rdzm'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
@@ -86,7 +86,7 @@ def Main():
 def send_conf_mail():
     if request.method == 'POST':
         email = request.form['email']
-        message = Message('Email Confirmation', sender='adriansdaleckis@gmail.com', recipients=[email])
+        message = Message('Email Confirmation', sender='adriansdaleckis@gmail.com', recipients=['adriansdaleckis@gmail.com'])
         message.body = 'This is a confirmation email to confirm the existence of the email.'
         mail.send(message)
         return 'Email sent successfully!'
@@ -168,16 +168,16 @@ def Register_page1():
             d['pass']=attempted_password
             
             d['email']=attempted_email
+
+            d['conf'] = "False"
             data.append(d)
 
             token = generate_confirmation_token(attempted_email)  # You will need to implement this function
             confirm_url = f'http://127.0.0.1:5000/confirm_email/{token}'  # Replace with your website URL
             html = render_template('confirmation_email.html', confirm_url=confirm_url)
-            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = [attempted_email])
+            message = Message('Account Confirmation', sender='adriansdaleckis@gmail.com', recipients = ['adriansdaleckis@gmail.com'])
             message.html = html
             mail.send(message)
-
-            session['email_confitmed'] = False
 
             if request.form['Username'] == '' or request.form['Password'] == '' or request.form['Email'] == '':
                return 'Invalid Credentials. Please try again.' 
@@ -193,7 +193,13 @@ def confirm_email(token):
     email = confirm_token(token)  # Use the confirm_token function you previously defined
     if email:
         # Here you can add code to update the user's account as confirmed or perform any other necessary actions.
-        session['email_confitmed'] = True
+        with open('data.json', 'r') as outfile: 
+                data = json.load(outfile)
+        with open('data.json', 'w') as outfile:
+                for _dict in data:
+                    if _dict['email'] == email:
+                        _dict["conf"] = "True"
+                json.dump(data, outfile, indent=4)
         return f'Thank you for confirming your email, {email}!'
     else:
         return 'The confirmation link is invalid or has expired.'
@@ -202,23 +208,22 @@ def confirm_email(token):
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     if request.method == "POST":
-        with open('data.json', 'r') as outfile: 
+        with open('data.json', 'r') as outfile:
             data = json.load(outfile)
-        
-        print(session['email_confitmed'])
-       
-        if session['email_confitmed'] == True:
-            for user in data:
-                if request.form['Password'] == user['pass'] and request.form['Email'] == user['email']:
-                    session['username'] = user['user']
-                    return redirect(url_for('Main'))
-                    #return 'SUCCESSFULLY LOGGEDIN'
-                    #error = 'Invalid Credentials. Please try again.'
-                # return render_template('bcd.html')
-            #return render_template('login.html')
-        else:
-            flash(f'You have not confirmed your email.')
-            return render_template('LoginPage.html')
+            for _dict in data:
+                    if _dict['email'] == request.form['Email']:
+                        if _dict['conf'] == "True":
+                            for user in data:
+                                if request.form['Password'] == user['pass'] and request.form['Email'] == user['email']:
+                                    session['username'] = user['user']
+                                    return redirect(url_for('Main'))
+                                    #return 'SUCCESSFULLY LOGGEDIN'
+                                    #error = 'Invalid Credentials. Please try again.'
+                                # return render_template('bcd.html')
+                            #return render_template('login.html')
+                        else:
+                            flash(f'You have not confirmed your email.')
+                            return render_template('LoginPage.html')
 
     return render_template('LoginPage.html')
 

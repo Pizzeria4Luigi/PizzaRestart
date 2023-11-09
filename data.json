@@ -2,26 +2,43 @@
     {
         "email": "anuj@gmail.com",
         "pass": "mansi",
-        "user": "anuj"
+        "user": "anuj",
+        "conf": "False"
     },
     {
         "email": "chef@gmail.com",
         "pass": "qwerty",
-        "user": "Chef"
+        "user": "Chef",
+        "conf": "True"
     },
     {
         "email": "waiter@gmail.com",
         "pass": "qwerty",
-        "user": "Waiter"
+        "user": "Waiter",
+        "conf": "True"
     },
     {
         "email": "user1@gmail.com",
         "pass": "qwerty",
-        "user": "User1"
+        "user": "User1",
+        "conf": "True"
     },
     {
         "email": "adriansd@inbox.lv",
         "pass": "qwerty",
-        "user": "User2"
+        "user": "User2",
+        "conf": "True"
+    },
+    {
+        "email": "test_user@gmail.com",
+        "pass": "qwerty",
+        "user": "Test_user",
+        "conf": "False"
+    },
+    {
+        "email": "test_user2@gmail.com",
+        "pass": "qwerty",
+        "user": "Test_user2",
+        "conf": "True"
     }
 ]
