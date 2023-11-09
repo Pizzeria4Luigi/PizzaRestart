@@ -65,7 +65,7 @@
                 <!-- <input type="password" name="Password1" placeholder="Repeat Password" required> -->
                 <input type="email" placeholder="Email" name="Email" value="{{request.form.Email}}">
                 <label>
-                    <input type="checkbox" name="Checkbox" value="1"> Agree with our terms and policies?
+                    <input type="checkbox" name="Checkbox" id="Checkbox" value="1"> Agree with our terms and policies?
                 </label>
                 <input type="submit" value="Register">
             </form>
@@ -74,7 +74,7 @@
     </div>
     <script>
         function validateForm() {
-            var checkBox = document.getElementById("agreement");
+            var checkBox = document.getElementById("Checkbox");
             if (!checkBox.checked) {
                 alert("You must agree to the terms and policies to register.");
                 return false;

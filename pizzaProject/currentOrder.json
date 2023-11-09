@@ -10,9 +10,9 @@
     {
         "Margherita": 1,
         "Pepperoni": 2,
-        "Formaggi": 0,
+        "Formaggi": 10,
         "Madness": 0,
-        "Baloney": 0,
+        "Baloney": 10,
         "Buns": 0
     },
     {
