@@ -86,7 +86,7 @@ def Main():
 def send_conf_mail():
     if request.method == 'POST':
         email = request.form['email']
-        message = Message('Email Confirmation', sender='your_email@example.com', recipients=[email])
+        message = Message('Email Confirmation', sender='adriansdaleckis@gmail.com', recipients=[email])
         message.body = 'This is a confirmation email to confirm the existence of the email.'
         mail.send(message)
         return 'Email sent successfully!'
@@ -118,15 +118,17 @@ def chef():
         with open('currentOrder.json', 'r') as f:
             #chef_orders_dict = []
             data = json.load(f)
+            count = 0
             for x in range(len(chef_orders_dict)):
                     chef_orders_dict.pop(0)
             for _dict in data:
+                count = count + 1
                 #_dict = data[int(session["Table"])-1]
                 for pizza in _dict:
                     while _dict[pizza] != 0:
-                        chef_orders_dict.append([pizza, _dict[pizza], session["Table"]])
+                        chef_orders_dict.append([pizza, _dict[pizza], str(count)])
                         _dict[pizza] = _dict[pizza] - 1
-                #print(chef_orders_dict)
+        print(chef_orders_dict)
         return render_template('Chef.html', data=chef_orders_dict, table = session["Table"])
     else:
         return "You dont have access to this page"
@@ -203,7 +205,7 @@ def login_page():
         with open('data.json', 'r') as outfile: 
             data = json.load(outfile)
         
-        print(session['email_confirmed'])
+        print(session['email_confitmed'])
        
         if session['email_confitmed'] == True:
             for user in data:

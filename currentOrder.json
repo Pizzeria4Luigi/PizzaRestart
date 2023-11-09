@@ -1,14 +1,6 @@
 [
     {
-        "Margherita": 1,
-        "Pepperoni": 0,
-        "Formaggi": 0,
-        "Madness": 0,
-        "Baloney": 0,
-        "Buns": 0
-    },
-    {
-        "Margherita": 1,
+        "Margherita": 0,
         "Pepperoni": 0,
         "Formaggi": 0,
         "Madness": 0,
@@ -20,7 +12,7 @@
         "Pepperoni": 0,
         "Formaggi": 0,
         "Madness": 0,
-        "Baloney": 3,
+        "Baloney": 0,
         "Buns": 0
     },
     {
@@ -28,7 +20,15 @@
         "Pepperoni": 0,
         "Formaggi": 0,
         "Madness": 0,
-        "Baloney": 2,
+        "Baloney": 0,
+        "Buns": 0
+    },
+    {
+        "Margherita": 0,
+        "Pepperoni": 1,
+        "Formaggi": 0,
+        "Madness": 1,
+        "Baloney": 0,
         "Buns": 0
     }
 ]

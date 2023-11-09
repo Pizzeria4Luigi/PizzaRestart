@@ -5,18 +5,18 @@
         "user": "anuj"
     },
     {
+        "email": "chef@gmail.com",
+        "pass": "qwerty",
+        "user": "Chef"
+    },
+    {
         "email": "waiter@gmail.com",
         "pass": "qwerty",
         "user": "Waiter"
     },
     {
-        "email": "qwerty@gmail.com",
+        "email": "user1@gmail.com",
         "pass": "qwerty",
-        "user": "QWERTY"
-    },
-    {
-        "email": "user@gmail.com",
-        "pass": "qwerty",
-        "user": "Adrian_20"
+        "user": "User1"
     }
 ]
