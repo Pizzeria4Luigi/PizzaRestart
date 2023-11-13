@@ -36,7 +36,7 @@ app.static_folder = 'static'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465  # or the appropriate port
 app.config['MAIL_USERNAME'] = 'adriansdaleckis@gmail.com'
-app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_PASSWORD'] = '' #For safety
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
